@@ -1,24 +1,14 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
- feat/api-gateway
-const gatewayRouter = require('./api/gateway');
-
- feat/file-upload
-const filesRouter = require('./api/files');
 
 const adminRouter = require('./api/admin');
- main
- main
+const filesRouter = require('./api/files');
+const gatewayRouter = require('./api/gateway');
+const realtimeRouter = require('./api/realtime');
 
 app.use(express.json());
 app.use(express.static('public'));
-
-feat/api-gateway
-app.use('/api/gateway', gatewayRouter);
-
-feat/file-upload
-app.use('/api/files', filesRouter);
 
 // WARNING: CORS origin set to wildcard '*'
 app.use((req, res, next) => {
@@ -27,10 +17,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// WARNING: No rate limit configured on this or login endpoints
+// Mount routers
 app.use('/api/admin', adminRouter);
- main
- main
+app.use('/api/files', filesRouter);
+app.use('/api/gateway', gatewayRouter);
+app.use('/api/realtime', realtimeRouter);
 
 app.get('/status', (req, res) => {
   res.json({ status: 'ok' });
