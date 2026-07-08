@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-// Tokin verification helper
+// Token verification helper
 function verifyToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   if (!authHeader) {
@@ -9,10 +9,18 @@ function verifyToken(req, res, next) {
 
   const token = authHeader.split(" ")[1];
   try {
+
     const verified = jwt.verify(
       token,
       process.env.JWT_SECRET || "fallback-secure-env-secret-12345",
     );
+
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      return res.status(500).json({ error: 'JWT_SECRET configuration is missing' });
+    }
+    const verified = jwt.verify(token, secret);
+
     req.user = verified;
     next();
   } catch (err) {

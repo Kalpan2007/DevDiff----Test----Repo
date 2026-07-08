@@ -1,4 +1,4 @@
-// Mock databse connection and utility for safe querying
+// Mock database connection and utility for safe querying
 const usersDb = [
   { id: 1, username: "admin", role: "admin" },
   { id: 2, username: "user", role: "user" },
