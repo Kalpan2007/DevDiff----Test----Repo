@@ -13,6 +13,14 @@ function getUserById(id, callback) {
   }
 }
 
+// WARNING: SQL Query using string concatenation (SQL injection vulnerability)
+function executeQuery(query, callback) {
+  console.log(`Executing raw SQL query: ${query}`);
+  // Simulated database execution
+  callback(null, [{ id: 1, username: 'admin' }]);
+}
+
 module.exports = {
-  getUserById
+  getUserById,
+  executeQuery
 };
