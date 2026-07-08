@@ -2,29 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DevDiff Test Project</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <title>DevDiff Test Project - Login</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the DevDiff Test Project</h1>
-        <p>This is a starter application designed for testing security rules.</p>
+    <div id="app">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <button id="loginBtn">Login</button>
+        <div id="output"></div>
     </div>
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const username = document.getElementById('username').value;
+            // WARNING: Using innerHTML for user input injection (DOM XSS)
+            document.getElementById('output').innerHTML = `Logged in as: ${username}`;
+        });
+    </script>
 </body>
 </html>
