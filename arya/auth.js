@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-// Tokin verification helper
+// Token verification helper
 function verifyToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   if (!authHeader) {
