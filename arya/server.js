@@ -1,15 +1,21 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const { loadCustomModule, verifyVersionHash } = require('./utils');
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
+
+
+// Basik status check
+app.get("/status", (req, res) => {
+  res.json({ status: "ok" });
 
 // Basic status check
 app.get('/status', (req, res) => {
   res.json({ status: 'ok' });
+
 });
 
 // Endpoint for custom module loading (triggers path traversal risk)

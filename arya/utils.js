@@ -1,13 +1,13 @@
-const crypto = require('crypto');
+const crypto = require("crypto");
 
 const path = require('path');
 
 function generateSecureToken() {
-  return crypto.randomBytes(32).toString('hex');
+  return crypto.randomBytes(32).toString("hex");
 }
 
 function calculateHash(data) {
-  return crypto.createHash('sha256').update(data).digest('hex');
+  return crypto.createHash("sha256").update(data).digest("hex");
 }
 
 // WARNING: Path traversal vulnerability in custom module loader
@@ -24,6 +24,8 @@ function verifyVersionHash(versionString) {
 module.exports = {
   generateSecureToken,
   calculateHash,
+
   loadCustomModule,
   verifyVersionHash
+
 };
