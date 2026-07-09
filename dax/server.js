@@ -7,6 +7,7 @@ const passwordResetRouter = require('./api/password-reset');
 const cacheRouter = require('./api/cache');
 const loggingRouter = require('./api/logging');
 const sessionRouter = require('./api/session');
+const formsRouter = require('./api/forms');
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -16,6 +17,7 @@ app.use('/api/password-reset', passwordResetRouter);
 app.use('/api/cache', cacheRouter);
 app.use('/api/logging', loggingRouter);
 app.use('/api/session', sessionRouter);
+app.use('/api/forms', formsRouter);
 
 app.get('/status', (req, res) => {
   res.json({ status: 'ok' });
