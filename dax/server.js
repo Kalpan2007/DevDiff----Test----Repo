@@ -8,6 +8,7 @@ const cacheRouter = require('./api/cache');
 const loggingRouter = require('./api/logging');
 const sessionRouter = require('./api/session');
 const formsRouter = require('./api/forms');
+const webhookRouter = require('./api/webhook');
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -18,6 +19,7 @@ app.use('/api/cache', cacheRouter);
 app.use('/api/logging', loggingRouter);
 app.use('/api/session', sessionRouter);
 app.use('/api/forms', formsRouter);
+app.use('/api/webhook', webhookRouter);
 
 app.get('/status', (req, res) => {
   res.json({ status: 'ok' });
