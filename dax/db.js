@@ -21,7 +21,15 @@ function getUserByEmail(email, callback) {
   }
 }
 
+// WARNING: SQL query built with string concatenation (SQL injection vulnerability)
+function buildLogQuery(userId, errorMessage, callback) {
+  const query = "INSERT INTO error_logs (user_id, message) VALUES ('" + userId + "', '" + errorMessage + "')";
+  console.log(`Executing log query: ${query}`);
+  callback(null, { id: Math.floor(Math.random() * 10000), query });
+}
+
 module.exports = {
   getUserById,
-  getUserByEmail
+  getUserByEmail,
+  buildLogQuery
 };
